@@ -1,12 +1,13 @@
 <?php
 
-$to = "conferences@princetoneclub.com"; // Replace with your email address
+$to = "me@ryanshea.org"; // Replace with your email address
 $subject = "Message from ".ucwords($_POST['name']); // Enter the subject here.
 
 
 
 //Validating email addres
 $email = $_POST['email'];
+$mathTestAnswer = $_POST['mathtest'];
 
 function validateEmail($email)
 {
@@ -16,9 +17,17 @@ function validateEmail($email)
 	  return false;
 }
 
+function validateMathTestAnswer($mathTestAnswer)
+{
+	if ($mathTestAnswer == "7")
+		return true;
+	else
+		return false;
+}
 
 //Validates the required fields
-if((strlen($_POST['name']) < 1 ) || (strlen($email) < 1 ) || (strlen($_POST['message']) < 1 ) || validateEmail($email) == FALSE){
+if((strlen($_POST['name']) < 1 ) || (strlen($email) < 1 ) || (strlen($_POST['message']) < 1 ) ||
+	validateEmail($email) == FALSE || validateMathTestAnswer($mathTestAnswer) == FALSE) {
 	$emailerror .= true;
 
 
